@@ -49,7 +49,7 @@
     <div class="main-wrap">
 
         <div class="crumb-wrap">
-            <div class="crumb-list"><i class="icon-font"></i><a href="/jscss/admin">首页</a><span class="crumb-step">&gt;</span><span class="crumb-name">链接管理</span></div>
+            <div class="crumb-list"><i class="icon-font"></i><a href="/jscss/admin">首页</a><span class="crumb-step">&gt;</span><span class="crumb-name">文章管理</span></div>
         </div>
         <div class="search-wrap">
             <div class="search-content">
@@ -72,13 +72,12 @@
             </div>
         </div>
         <div class="result-wrap">
-            <form name="myform" id="myform" method="post" action="/blog/index.php/Admin/Column/sort">
+            <form name="myform" id="myform" method="post" action="">
                 <div class="result-title">
                     <div class="result-list">
-                        <a href="/blog/index.php/Admin/Column/add"><i class="icon-font"></i>新增链接</a>
+                        <a href="/blog/index.php/Admin/Article/add"><i class="icon-font"></i>新增文章</a>
                         <a id="batchDel" href="javascript:void(0)"><i class="icon-font"></i>批量删除</a>
-                            <a id="updateOrd" href="javascript:void(0)"><i class="icon-font"></i>
-                                <input class="btn btn-primary btn2" value="更新排序" type="submit">
+                            <a id="updateOrd" href="javascript:void(0)">
                             </a>
                     </div>
                 </div>
@@ -86,28 +85,34 @@
                     <table class="result-tab" width="100%">
                         <tr>
                             <th class="tc" width="5%"><input class="allChoose" name="" type="checkbox"></th>
-                            <th>排序</th>
                             <th>ID</th>
-                            <th>链接名称</th>
+                            <th>文章标题</th>
+                            <th>文章描述</th>
+                            <th>缩略图</th>
+                            <th>所属栏目</th>
                             <th>操作</th>
                         </tr>
-                        <?php if(is_array($columns)): $k = 0; $__LIST__ = $columns;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($k % 2 );++$k;?><tr>
+                        <?php if(is_array($list)): $k = 0; $__LIST__ = $list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($k % 2 );++$k;?><tr>
                             <td class="tc"><input name="id[]" value="59" type="checkbox"></td>
-                            <td>
-                                <!--<input name="ids[]" value="59" type="hidden">-->
-                                <input class="common-input sort-input" name="<?php echo ($vo["id"]); ?>" value="<?php echo ($vo["sort"]); ?>" type="text">
-                            </td>
                             <td><?php echo ($vo["id"]); ?></td>
                             <td title=""><a target="_blank" href="#" title=""></a>
-                                <?php echo ($vo["column_name"]); ?>
+                                <?php echo ($vo["title"]); ?>
                             </td>
+                            <td><?php echo ($vo["article_desc"]); ?></td>
                             <td>
-                                <a class="link-update" href="/blog/index.php/Admin/Column/edit/id/<?php echo ($vo["id"]); ?>">修改</a>
-                                <a class="link-del" onclick="return confirm('确认删除？')" href="/blog/index.php/Admin/Column/del/id/<?php echo ($vo["id"]); ?>">删除</a>
+                                <?php if($vo.['pic'] != ''): ?><img src="/blog<?php echo ($vo["pic"]); ?>" height="50">
+                                    <?php else: ?>
+                                    无缩略图<?php endif; ?>
+                            </td>
+                            <td><?php echo ($vo["column_name"]); ?></td>
+                            <td>
+                                <a class="link-update" href="/blog/index.php/Admin/Article/edit/id/<?php echo ($vo["id"]); ?>">修改</a>
+                                <a class="link-del" onclick="return confirm('确认删除？')" href="/blog/index.php/Admin/Article/del/id/<?php echo ($vo["id"]); ?>">删除</a>
                             </td>
                         </tr><?php endforeach; endif; else: echo "" ;endif; ?>
                         </tr>
                     </table>
+                        <div class="list-page"><?php echo ($page); ?></div>
                 </div>
             </form>
         </div>

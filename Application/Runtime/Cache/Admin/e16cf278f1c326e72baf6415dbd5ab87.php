@@ -6,6 +6,11 @@
     <link rel="stylesheet" type="text/css" href="http://localhost/blog/Application/Admin/Public/css/common.css"/>
     <link rel="stylesheet" type="text/css" href="http://localhost/blog/Application/Admin/Public/css/main.css"/>
     <script type="text/javascript" src="http://localhost/blog/Application/Admin/Public/js/libs/modernizr.min.js"></script>
+    <!-- 配置文件 -->
+    <script type="text/javascript" src="http://localhost/blog/Application/Admin/Public/ueditor/ueditor.config.js"></script>
+    <!-- 编辑器源码文件 -->
+    <script type="text/javascript" src="http://localhost/blog/Application/Admin/Public/ueditor/ueditor.all.js"></script>
+    <script type="text/javascript" src="http://localhost/blog/Application/Admin/Public/ueditor/lang/zh-cn.js"></script>
 </head>
 <body>
 <div class="topbar-wrap white">
@@ -49,18 +54,44 @@
     <div class="main-wrap">
 
         <div class="crumb-wrap">
-            <div class="crumb-list"><i class="icon-font"></i><a href="/jscss/admin/design/">首页</a><span class="crumb-step">&gt;</span><a class="crumb-name" href="/jscss/admin/design/">栏目管理</a><span class="crumb-step">&gt;</span><span>修改栏目</span></div>
+            <div class="crumb-list"><i class="icon-font"></i><a href="/jscss/admin/design/">首页</a><span class="crumb-step">&gt;</span><a class="crumb-name" href="/jscss/admin/design/">文章管理</a><span class="crumb-step">&gt;</span><span>新增文章</span></div>
         </div>
         <div class="result-wrap">
             <div class="result-content">
-                <form action="" method="post" id="myform" name="myform">
+                <form action="" method="post" id="myform" name="myform" enctype="multipart/form-data">
                     <table class="insert-tab" width="100%">
                         <tbody>
                             <tr>
-                                <th><i class="require-red">*</i>栏目名称：</th>
+                                <th><i class="require-red">*</i>文章标题：</th>
                                 <td>
-                                    <input type="hidden" name="id" value="<?php echo ($column["id"]); ?>">
-                                    <input class="common-text required" id="column_name" name="column_name" size="50" value="<?php echo ($column["column_name"]); ?>" type="text">
+                                    <input class="common-text required" id="article_title" name="article_title" size="50" value="" type="text">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th><i class="require-red">*</i>文章描述：</th>
+                                <td>
+                                    <textarea style="width:420px;height: 100px;" name="article_desc"></textarea>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th><i class="require-red">*</i>图片地址：</th>
+                                <td>
+                                    <input class="" id="pic" name="article_pic" type="file"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th><i class="require-red">*</i>所属栏目：</th>
+                                <td>
+                                    <select name="column_id">
+                                        <option>default</option>
+                                        <?php if(is_array($columns)): $i = 0; $__LIST__ = $columns;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><option value="<?php echo ($vo["id"]); ?>"><?php echo ($vo["column_name"]); ?></option><?php endforeach; endif; else: echo "" ;endif; ?>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th><i class="require-red">*</i>内容：</th>
+                                <td>
+                                    <textarea name="content" id="content"></textarea>
                                 </td>
                             </tr>
                             <tr>
@@ -78,5 +109,10 @@
     </div>
     <!--/main-->
 </div>
+<script type="text/javascript">
+    //var ue = UE.getEditor('container');
+    UE.getEditor('content',{initialFrameWidth:1000,initialFrameHeight:200,})
+    //引入富文本编辑器
+</script>
 </body>
 </html>

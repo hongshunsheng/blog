@@ -36,7 +36,7 @@
             <li>
                 <a href="#"><i class="icon-font">&#xe003;</i>常用操作</a>
                 <ul class="sub-menu">
-                    <li><a href="design.html"><i class="icon-font">&#xe008;</i>文章管理</a></li>
+                    <li><a href="/blog/index.php/Admin/Article/lst"><i class="icon-font">&#xe008;</i>文章管理</a></li>
                     <li><a href="/blog/index.php/Admin/Column/column"><i class="icon-font">&#xe005;</i>分类管理</a></li>
                     <li><a href="/blog/index.php/Admin/Link/lst"><i class="icon-font">&#xe012;</i>友情链接</a></li>
                     <li><a href="design.html"><i class="icon-font">&#xe052;</i>管理员管理</a></li>

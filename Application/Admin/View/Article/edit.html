@@ -1,0 +1,95 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>后台管理</title>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/main.css"/>
+    <script type="text/javascript" src="__PUBLIC__/js/libs/modernizr.min.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/ueditor/ueditor.config.js"></script>
+    <!-- 编辑器源码文件 -->
+    <script type="text/javascript" src="__PUBLIC__/ueditor/ueditor.all.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/ueditor/lang/zh-cn.js"></script>
+</head>
+<body>
+<include file="Public/header"/>
+<div class="container clearfix">
+    <include file="Public/left"/>
+    <!--/sidebar-->
+    <div class="main-wrap">
+
+        <div class="crumb-wrap">
+            <div class="crumb-list"><i class="icon-font"></i><a href="/jscss/admin/design/">首页</a><span class="crumb-step">&gt;</span><a class="crumb-name" href="/jscss/admin/design/">文章管理</a><span class="crumb-step">&gt;</span><span>修改文章</span></div>
+        </div>
+        <div class="result-wrap">
+            <div class="result-content">
+                <form action="" method="post" id="myform" name="myform" enctype="multipart/form-data">
+                    <table class="insert-tab" width="100%">
+                        <tbody>
+                        <tr>
+                            <th><i class="require-red">*</i>文章标题：</th>
+                            <td>
+                                <input type="hidden" name="article_id" value="{$article.id}"/>
+                                <input class="common-text required" id="article_title" name="article_title" size="50" value="{$article.title}" type="text">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th><i class="require-red">*</i>文章描述：</th>
+                            <td>
+                                <textarea style="width:420px;height: 100px;" name="article_desc">{$article.desc}</textarea>
+                            </td>
+                        </tr>
+                        <if condition="$article['pic'] neq ''">
+                            <tr>
+                                <th>图片信息：</th>
+                                <td>
+                                    <img src="__ROOT__{$article.pic}" height="50"/>
+                                </td>
+                            </tr>
+                        </if>
+                        <tr>
+                            <th><i class="require-red">*</i>更新图片：</th>
+                            <td>
+                                <input class="" id="pic" name="article_pic" type="file"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th><i class="require-red">*</i>所属栏目：</th>
+                            <td>
+                                <select name="column_id">
+                                    <option>default</option>
+                                    <volist name="columns" id="vo">
+                                        <option <if condition="$vo.id eq $article['column_id']">selected="selected"</if>
+                                        value="{$vo.id}" >{$vo.column_name}</option>
+                                    </volist>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th><i class="require-red">*</i>内容：</th>
+                            <td>
+                                <textarea name="content" id="content">{$article.content}</textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th></th>
+                            <td>
+                                <input class="btn btn-primary btn6 mr10" value="提交" type="submit">
+                                <input class="btn btn6" onclick="history.go(-1)" value="返回" type="button">
+                            </td>
+                        </tr>
+                        </tbody></table>
+                </form>
+            </div>
+        </div>
+
+    </div>
+    <!--/main-->
+</div>
+<script type="text/javascript">
+    //var ue = UE.getEditor('container');
+    UE.getEditor('content',{initialFrameWidth:1000,initialFrameHeight:200,})
+    //引入富文本编辑器
+</script>
+</body>
+</html>
