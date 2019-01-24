@@ -1,7 +1,7 @@
 <?php
 namespace Admin\Model;
 use Think\Model;
-class ColumnModel extends Model {
+class ArticleModel extends Model {
     protected $_validate = array(
         array('article_title','require','标题不能为空！',1,'regex',3), //不能为空
         array('article_desc','require','简介不能为空！',1,'regex',3), //不能为空

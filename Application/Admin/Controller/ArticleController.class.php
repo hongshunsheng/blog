@@ -24,17 +24,15 @@ class ArticleController extends Controller {
         $object=$article->find(I('id'));
         $this->assign('article',$object);
         $this->assign('columns',$columns);
-
         if(IS_POST){
             //dump($object);
             $data['id']=I('article_id');
             //dump($_SERVER['DOCUMENT_ROOT']);
             $data['title']=I('article_title');
-            if($_FILES['article_pic']['name']!==''){
-                $article=D('article');
-                $object=$article->find(I('article_id'));
-                unlink($_SERVER['DOCUMENT_ROOT'].'/blog'.$object['pic']);
-                //上传图片，并把路径保存在数据库字段中
+            if($_FILES['article_pic']['name']!==''){//如果上传的对象的name不为空
+                $article=D('article');//获取实例
+                $object=$article->find(I('article_id'));//获取对象
+                unlink($_SERVER['DOCUMENT_ROOT'].'/blog'.$object['pic']);//组合图片地址，删除旧图片
                 $upload = new \Think\Upload();// 实例化上传类
                 $upload->maxSize   =     3145728 ;// 设置附件上传大小
                 $upload->exts      =     array('jpg', 'gif', 'png', 'jpeg');// 设置附件上传类型
@@ -86,7 +84,6 @@ class ArticleController extends Controller {
             }else{// 上传成功
                 $data['pic']=$info['savepath'].$info['savename'];
             }
-
             $data['desc']=I('article_desc');
             $data['content']=I('content');
             $data['column_id']=I('column_id');
@@ -121,13 +118,4 @@ class ArticleController extends Controller {
         }
     }
 
-    //文章排序
-    //失效方法
-    public function sort(){
-        $article=D('article');
-        foreach($_POST as $id=>$sort){
-            $article->where(array('id'=>$id))->setField('sort',$sort);
-        }
-        $this->success('排序成功',U('lst'));
-    }
 }

@@ -49,7 +49,7 @@
     <div class="main-wrap">
 
         <div class="crumb-wrap">
-            <div class="crumb-list"><i class="icon-font"></i><a href="/jscss/admin">首页</a><span class="crumb-step">&gt;</span><span class="crumb-name">链接管理</span></div>
+            <div class="crumb-list"><i class="icon-font"></i><a href="/jscss/admin">首页</a><span class="crumb-step">&gt;</span><span class="crumb-name">管理员管理</span></div>
         </div>
         <div class="search-wrap">
             <div class="search-content">
@@ -72,38 +72,29 @@
             </div>
         </div>
         <div class="result-wrap">
-            <form name="myform" id="myform" method="post" action="/blog/index.php/Admin/Column/sort">
+            <form name="myform" id="myform" method="post" action="/blog/index.php/Admin/Admin/sort">
                 <div class="result-title">
                     <div class="result-list">
-                        <a href="/blog/index.php/Admin/Column/add"><i class="icon-font"></i>新增链接</a>
-                        <a id="batchDel" href="javascript:void(0)"><i class="icon-font"></i>批量删除</a>
-                            <a id="updateOrd" href="javascript:void(0)"><i class="icon-font"></i>
-                                <input class="btn btn-primary btn2" value="更新排序" type="submit">
-                            </a>
+                        <a href="/blog/index.php/Admin/Admin/add"><i class="icon-font"></i>新增管理员</a>
                     </div>
                 </div>
                 <div class="result-content">
                     <table class="result-tab" width="100%">
                         <tr>
                             <th class="tc" width="5%"><input class="allChoose" name="" type="checkbox"></th>
-                            <th>排序</th>
                             <th>ID</th>
-                            <th>链接名称</th>
+                            <th>管理员账号</th>
                             <th>操作</th>
                         </tr>
-                        <?php if(is_array($columns)): $k = 0; $__LIST__ = $columns;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($k % 2 );++$k;?><tr>
+                        <?php if(is_array($admins)): $k = 0; $__LIST__ = $admins;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($k % 2 );++$k;?><tr>
                             <td class="tc"><input name="id[]" value="59" type="checkbox"></td>
-                            <td>
-                                <!--<input name="ids[]" value="59" type="hidden">-->
-                                <input class="common-input sort-input" name="<?php echo ($vo["id"]); ?>" value="<?php echo ($vo["sort"]); ?>" type="text">
-                            </td>
                             <td><?php echo ($vo["id"]); ?></td>
                             <td title=""><a target="_blank" href="#" title=""></a>
-                                <?php echo ($vo["column_name"]); ?>
+                                <?php echo ($vo["admin_name"]); ?>
                             </td>
                             <td>
-                                <a class="link-update" href="/blog/index.php/Admin/Column/edit/id/<?php echo ($vo["id"]); ?>">修改</a>
-                                <a class="link-del" onclick="return confirm('确认删除？')" href="/blog/index.php/Admin/Column/del/id/<?php echo ($vo["id"]); ?>">删除</a>
+                                <a class="link-update" href="/blog/index.php/Admin/Admin/edit/id/<?php echo ($vo["id"]); ?>">修改</a>
+                                <a class="link-del" onclick="return confirm('确认删除？')" href="/blog/index.php/Admin/Admin/del/id/<?php echo ($vo["id"]); ?>">删除</a>
                             </td>
                         </tr><?php endforeach; endif; else: echo "" ;endif; ?>
                         </tr>
