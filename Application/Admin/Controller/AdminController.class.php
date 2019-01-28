@@ -1,7 +1,7 @@
 <?php
 namespace Admin\Controller;
 use Think\Controller;
-class AdminController extends Controller {
+class AdminController extends CommonController {
 
     //载入admin页面
     public function lst(){

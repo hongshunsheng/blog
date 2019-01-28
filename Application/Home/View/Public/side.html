@@ -1,0 +1,26 @@
+<div class="sidebar">
+    <img src="__PUBLIC__/images/56.jpg" height="150" width="300">
+    <div class="widget widget_categories"><h3 class="widget-tit">文章分类</h3>
+        <ul>
+            <volist name="columns" id="vo" key="k">
+            <li class="cat-item cat-item-18"><a href="__MODULE__/Column/index/id/{$vo.id}"title="">{$vo.column_name}</a></li>
+            </volist>
+        </ul>
+    </div>
+    <div class="widget widget_recent_entries"><h3 class="widget-tit">最新发表</h3>
+        <ul>
+            <li>
+                <volist name="articles" id="vo" key="k">
+                <a href="__MODULE__/Article/index/id/{$vo.id}">{$vo.title}</a>
+                </volist>
+            </li>
+        </ul>
+    </div>
+    <div class="widget widget_links"><h3 class="widget-tit">友情链接</h3>
+        <ul class='xoxo blogroll'>
+            <volist name="links" id="vo" key="k">
+            <li><a href="{$vo.url}" rel="friend" target="_blank">{$vo.title}</a></li>
+            </volist>
+        </ul>
+    </div>
+</div>

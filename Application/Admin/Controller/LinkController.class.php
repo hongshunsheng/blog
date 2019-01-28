@@ -1,7 +1,7 @@
 <?php
 namespace Admin\Controller;
 use Think\Controller;
-class LinkController extends Controller {
+class LinkController extends CommonController {
 
     //载入Link页面
     public function lst(){

@@ -21,6 +21,11 @@
                         <input type="password" name="password" value="" id="pwd" size="35" class="admin_input_style" />
                     </li>
                     <li>
+                        <label for="pwd">验证码：</label>
+                        <input type="verify" name="verify" value="" id="verify" size="20" class="admin_input_style" />
+                        <img src="/blog/index.php/Admin/Login/verify" style="width:175px;height: 40px;cursor: pointer" onclick="this.src='/blog/index.php/Admin/Login/verify'"/>
+                    </li>
+                    <li>
                         <input type="submit" tabindex="3" value="提交" class="btn btn-primary" />
                     </li>
                 </ul>

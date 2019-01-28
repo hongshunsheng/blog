@@ -5,5 +5,5 @@
       <path value="E:/thinkphp_5.0.22_with_extend/thinkphp" />
     </include_path>
   </component>
-  <component name="PhpProjectSharedConfiguration" php_language_level="5.3.0" />
+  <component name="PhpProjectSharedConfiguration" php_language_level="5.4.0" />
 </project>

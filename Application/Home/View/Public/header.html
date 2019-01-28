@@ -1,0 +1,22 @@
+<div class="img">
+    <img src="__PUBLIC__/images/tooopen" height="300" width="100%">
+</div>
+<div class="topbar">
+    <div class="inner">
+        <ul class="nav">
+            <li><a href="__MODULE__/Index/index">首页</a></li>
+            <volist name="columns" id="vo" key="k">
+            <li><a href="__MODULE__/Column/index/id/{$vo.id}">{$vo.column_name}</a></li>
+            </volist>
+            </ul>
+
+        <ul class="nav topmenu">
+            <li id="menu-item-12460" class="">
+                <a href="">关于本站</a>
+                </li>
+            <li id="menu-item-12460" class="">
+                <a href="__ROOT__/Admin/Login/index">登陆</a>
+            </li>
+        </ul>
+    </div>
+</div>

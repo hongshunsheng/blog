@@ -1,10 +1,10 @@
 <?php
 namespace Admin\Controller;
 use Think\Controller;
-class ColumnController extends Controller {
+class ColumnController extends CommonController {
 
     //载入column页面
-    public function column(){
+    public function lst(){
         $column=D('column');
         $lst=$column->order('sort asc')->select();
         //根据sort排列栏目
@@ -21,8 +21,9 @@ class ColumnController extends Controller {
             $data['id']=I('id');
             $data['column_name']=I('column_name');
             if($column->create($data)){
+                //echo json_encode($column);
                 if($column->save()){
-                    $this->success('修改栏目成功',U(column));
+                    $this->success('修改栏目成功',U(lst));
                     return;
                 }else{
                     $this->error($data->getError());
@@ -40,7 +41,7 @@ class ColumnController extends Controller {
             if($column->create($data)){
                 //如果创建数据对象成功
                 if($column->add()){
-                    $this->success('栏目添加成功！',U(column));
+                    $this->success('栏目添加成功！',U(lst));
                 }else{
                     $this->error('添加栏目失败！');
                 }
@@ -58,7 +59,7 @@ class ColumnController extends Controller {
     public function del(){
         $column=D('column');
         if($column->delete(I('id'))){
-            $this->success('删除栏目成功',U(column));
+            $this->success('删除栏目成功',U(lst));
         }else{
             $this->error('删除栏目失败');
         }
@@ -70,6 +71,6 @@ class ColumnController extends Controller {
         foreach($_POST as $id=>$sort){
             $column->where(array('id'=>$id))->setField('sort',$sort);
         }
-        $this->success('排序成功',U('column'));
+        $this->success('排序成功',U('lst'));
     }
 }
